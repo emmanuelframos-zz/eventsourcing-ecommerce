@@ -1,0 +1,9 @@
+allprojects {
+    apply plugin: 'java'
+}
+
+subprojects {
+    repositories {
+        jcenter()
+    }
+}

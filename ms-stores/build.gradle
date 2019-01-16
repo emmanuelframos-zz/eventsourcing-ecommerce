@@ -1,0 +1,40 @@
+plugins {
+    id "org.springframework.boot" version "2.1.2.RELEASE"
+}
+
+archivesBaseName =  "ms-stores"
+
+bootRun {
+    systemProperties System.properties
+}
+
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+    compile.exclude group: "org.apache.tomcat"
+}
+
+dependencies {
+
+    /** Spring Boot Stack **/
+    def springBootVersion = "2.1.2.RELEASE"
+    compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    /** Based on: https://www.techempower.com/benchmarks/#section=data-r17 **/
+    compile "org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"
+
+    /** Utils **/
+    compile "org.apache.commons:commons-lang3:3.7"
+
+    /** Swagger **/
+    compile "io.springfox:springfox-swagger2:2.9.2"
+    compile "io.springfox:springfox-swagger-ui:2.9.2"
+
+    /** Tests **/
+    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+
+}
+
+test {
+    beforeTest { testName ->
+        logger.lifecycle("Running: " +  testName)
+    }
+}

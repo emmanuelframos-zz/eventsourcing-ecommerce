@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ms-orders
+
+server:
+  port: 8081
