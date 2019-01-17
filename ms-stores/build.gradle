@@ -4,22 +4,16 @@ plugins {
 
 archivesBaseName =  "ms-stores"
 
-bootRun {
-    systemProperties System.properties
-}
-
-configurations {
-    compile.exclude module: "spring-boot-starter-tomcat"
-    compile.exclude group: "org.apache.tomcat"
-}
-
 dependencies {
+
+    compile project(":commons-exceptions")
 
     /** Spring Boot Stack **/
     def springBootVersion = "2.1.2.RELEASE"
     compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     /** Based on: https://www.techempower.com/benchmarks/#section=data-r17 **/
     compile "org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}"
 
     /** Utils **/
     compile "org.apache.commons:commons-lang3:3.7"

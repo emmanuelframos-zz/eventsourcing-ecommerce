@@ -1,43 +1,71 @@
 version: '3'
 services:
-  rabbitmq:
-    image: rabbitmq:3.7.8-management-alpine
+  mongo:
+    image: mongo:4.1.6
+    restart: always
+    volumes:
+      - ./mongo-config:/docker-entrypoint-initdb.d
+      - /var/lib/mongo:/data/db
     environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: nimda
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root2019
+      MONGO_INITDB_DATABASE: ecommerce
     ports:
-      - 15672:15672
-      - 5672:5672
-
-  ms-stores:
-    build:
-      context: .
-      dockerfile: Dockerfile.Stores
-    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-stores.jar"]
-    ports:
-      - 8080:8080
+      - 27017:27017
     networks:
       - ecommerce_cluster
 
-  ms-orders:
-    build:
-      context: .
-      dockerfile: Dockerfile.Orders
-    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-orders.jar"]
+  mongo-express:
+    image: mongo-express:0.49
+    restart: always
     ports:
       - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root2019
     networks:
       - ecommerce_cluster
 
-  ms-payments:
-    build:
-      context: .
-      dockerfile: Dockerfile.Payments
-    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-payments.jar"]
-    ports:
-      - 8082:8082
-    networks:
-      - ecommerce_cluster
+#  rabbitmq:
+#    image: rabbitmq:3.7.8-management-alpine
+#    environment:
+#      RABBITMQ_DEFAULT_USER: admin
+#      RABBITMQ_DEFAULT_PASS: nimda
+#    ports:
+#      - 15672:15672
+#      - 5672:5672
+#    networks:
+#      - ecommerce_cluster
+
+#  ms-stores:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.Stores
+#    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-stores.jar"]
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - ecommerce_cluster
+#
+#  ms-orders:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.Orders
+#    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-orders.jar"]
+#    ports:
+#      - 8081:8081
+#    networks:
+#      - ecommerce_cluster
+#
+#  ms-payments:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.Payments
+#    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-payments.jar"]
+#    ports:
+#      - 8082:8082
+#    networks:
+#      - ecommerce_cluster
 
 networks:
   ecommerce_cluster:

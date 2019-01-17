@@ -1,3 +1,4 @@
-include 'ms-orders',
+include 'commons-exceptions',
+        'ms-orders',
         'ms-payments',
         'ms-stores'

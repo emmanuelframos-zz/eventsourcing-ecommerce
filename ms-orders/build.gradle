@@ -4,15 +4,6 @@ plugins {
 
 archivesBaseName = "ms-orders"
 
-bootRun {
-    systemProperties System.properties
-}
-
-configurations {
-    compile.exclude module: "spring-boot-starter-tomcat"
-    compile.exclude group: "org.apache.tomcat"
-}
-
 dependencies {
 
     /** Spring Boot Stack **/
