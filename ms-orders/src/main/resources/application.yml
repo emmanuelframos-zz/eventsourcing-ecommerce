@@ -1,6 +1,12 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: ms-orders
-
-server:
-  port: 8081
+  data.mongodb:
+    host: localhost
+    port: 27017
+    username: app
+    password: app2019
+    database: ecommerce
