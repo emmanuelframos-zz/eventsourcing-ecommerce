@@ -29,4 +29,17 @@ public class OrderParser {
         );
         return order;
     }
+
+    public OrderDTO toDTO(Order order){
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.id = order.getId().toHexString();
+        orderDTO.address = order.getAddress();
+        orderDTO.confirmationDate = order.getConfirmationDate();
+        orderDTO.status = order.getStatus();
+        orderDTO.orderItems = order.getOrderItems()
+                .stream()
+                .map(orderItemParser::toDTO)
+                .collect(Collectors.toList());
+        return orderDTO;
+    }
 }

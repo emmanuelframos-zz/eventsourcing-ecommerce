@@ -2,7 +2,6 @@ package com.orders.domain;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -16,7 +15,6 @@ public class Order {
     private String address;
     private LocalDateTime confirmationDate;
     private OrderStatus status;
-    @DBRef
     private List<OrderItem> orderItems;
 
     public ObjectId getId() {

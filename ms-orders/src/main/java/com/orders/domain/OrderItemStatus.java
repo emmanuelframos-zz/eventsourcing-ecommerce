@@ -1,6 +1,6 @@
 package com.orders.domain;
 
-public enum OrderStatus {
+public enum OrderItemStatus {
 
     CONFIRMED,
     REFUNDED

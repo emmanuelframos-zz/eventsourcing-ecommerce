@@ -1,27 +1,17 @@
 package com.orders.domain;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 
-@Document(collection = "orderItems")
+@Document
 public class OrderItem {
 
-    @Id
-    private ObjectId id;
+    private String code;
     private String description;
     private BigDecimal unitPrice;
     private Integer quantity;
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
+    private OrderItemStatus status;
 
     public String getDescription() {
         return description;
@@ -45,5 +35,21 @@ public class OrderItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public OrderItemStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderItemStatus status) {
+        this.status = status;
     }
 }
