@@ -1,4 +1,4 @@
-package com.orders.domain;
+package com.orders.contract.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

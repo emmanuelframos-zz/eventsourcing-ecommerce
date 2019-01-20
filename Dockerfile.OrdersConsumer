@@ -1,0 +1,7 @@
+FROM openjdk:8u191-jre-alpine3.8
+
+ENV HOME=/home/ms-orders-consumer
+
+ADD ms-orders-consumer/build/libs/ms-orders-consumer.jar ms-orders-consumer.jar
+
+CMD ["java", "-jar", "ms-orders-consumer.jar"]

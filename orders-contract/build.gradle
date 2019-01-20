@@ -1,0 +1,8 @@
+archivesBaseName = "orders-contract-domain"
+
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}"
+    compile "com.fasterxml.jackson.core:jackson-annotations:2.9.0"
+
+}

@@ -4,10 +4,6 @@ ENV HOME=/home/ms-payments
 
 WORKDIR $HOME
 
-RUN apk add --no-cache bash; \
-    apk add netcat-openbsd
-
-# https://github.com/vishnubob/wait-for-it
-ADD wait-for.sh wait-for.sh
-
 ADD ms-payments/build/libs/ms-payments.jar ms-payments.jar
+
+CMD  ["java", "-jar", "ms-payments.jar"]

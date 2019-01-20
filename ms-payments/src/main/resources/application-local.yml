@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ms-payments
+
+server:
+  port: 8093

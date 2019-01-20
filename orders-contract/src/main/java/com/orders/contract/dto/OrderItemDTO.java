@@ -1,6 +1,6 @@
-package com.orders.api.dto;
+package com.orders.contract.dto;
 
-import com.orders.domain.OrderItemStatus;
+import com.orders.contract.domain.OrderItemStatus;
 
 import java.math.BigDecimal;
 

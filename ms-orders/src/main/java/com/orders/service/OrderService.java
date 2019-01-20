@@ -1,12 +1,13 @@
 package com.orders.service;
 
-import com.orders.api.dto.OrderDTO;
-import com.orders.api.dto.OrderFilterDTO;
-import com.orders.api.dto.OrderItemDTO;
-import com.orders.domain.Order;
-import com.orders.domain.OrderItemStatus;
-import com.orders.domain.OrderStatus;
-import com.orders.parser.OrderParser;
+import com.orders.contract.domain.Order;
+import com.orders.contract.domain.OrderItemStatus;
+import com.orders.contract.domain.OrderStatus;
+import com.orders.contract.dto.OrderDTO;
+import com.orders.contract.dto.OrderFilterDTO;
+import com.orders.contract.dto.OrderItemDTO;
+import com.orders.contract.parser.OrderParser;
+import com.orders.sender.OrderSender;
 import com.orders.repository.OrderRepository;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,14 @@ import java.util.stream.Collectors;
 @Service
 public class OrderService {
 
+    private final OrderSender orderSender;
     private final OrderParser orderParser;
     private final OrderRepository orderRepository;
 
-    public OrderService(OrderParser orderParser, OrderRepository orderRepository) {
+    public OrderService(OrderParser orderParser, OrderRepository orderRepository, OrderSender orderSender) {
         this.orderParser = orderParser;
         this.orderRepository = orderRepository;
+        this.orderSender = orderSender;
     }
 
     public List<OrderDTO> findByFilter(OrderFilterDTO orderFilterDTO){
@@ -44,9 +47,8 @@ public class OrderService {
         return Collections.emptyList();
     }
 
-    public String create(OrderDTO orderDTO){
-        Order order = orderParser.toDomain(orderDTO);
-        return orderRepository.save(order).getId().toHexString();
+    public void create(OrderDTO orderDTO){
+        orderSender.send(orderDTO);
     }
 
     public void refundOrder(ObjectId id){

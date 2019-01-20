@@ -1,6 +1,6 @@
-package com.orders.api.dto;
+package com.orders.contract.dto;
 
-import com.orders.domain.OrderStatus;
+import com.orders.contract.domain.OrderStatus;
 import org.bson.types.ObjectId;
 
 public class OrderFilterDTO {

@@ -26,46 +26,62 @@ services:
     networks:
       - ecommerce_cluster
 
-#  rabbitmq:
-#    image: rabbitmq:3.7.8-management-alpine
-#    environment:
-#      RABBITMQ_DEFAULT_USER: admin
-#      RABBITMQ_DEFAULT_PASS: nimda
-#    ports:
-#      - 15672:15672
-#      - 5672:5672
-#    networks:
-#      - ecommerce_cluster
+  rabbitmq:
+    image: rabbitmq:3.7.8-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: nimda
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - ecommerce_cluster
 
-#  ms-stores:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.Stores
-#    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-stores.jar"]
-#    ports:
-#      - 8080:8080
-#    networks:
-#      - ecommerce_cluster
-#
-#  ms-orders:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.Orders
-#    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-orders.jar"]
-#    ports:
-#      - 8081:8081
-#    networks:
-#      - ecommerce_cluster
-#
-#  ms-payments:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.Payments
-#    command: ["./wait-for.sh", "rabbitmq:5672", "--", "java", "-jar", "ms-payments.jar"]
-#    ports:
-#      - 8082:8082
-#    networks:
-#      - ecommerce_cluster
+  ms-stores:
+    build:
+      context: .
+      dockerfile: Dockerfile.Stores
+    ports:
+      - 8090:8090
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ecommerce_cluster
+
+  ms-orders:
+    build:
+      context: .
+      dockerfile: Dockerfile.Orders
+    ports:
+      - 8091:8091
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ecommerce_cluster
+
+  ms-orders-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.OrdersConsumer
+    ports:
+      - 8092:8092
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - ms-orders
+    networks:
+      - ecommerce_cluster
+
+  ms-payments:
+    build:
+      context: .
+      dockerfile: Dockerfile.Payments
+    ports:
+      - 8093:8093
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ecommerce_cluster
 
 networks:
   ecommerce_cluster:

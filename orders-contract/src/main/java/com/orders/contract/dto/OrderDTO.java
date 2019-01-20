@@ -1,7 +1,7 @@
-package com.orders.api.dto;
+package com.orders.contract.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.orders.domain.OrderStatus;
+import com.orders.contract.domain.OrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

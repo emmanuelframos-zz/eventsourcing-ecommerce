@@ -1,0 +1,21 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: ms-orders
+  data.mongodb:
+    host: localhost
+    port: 27017
+    username: app
+    password: app2019
+    database: ecommerce
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: nimda
+
+rabbitmq:
+  order:
+    queue.name: OrderQueue

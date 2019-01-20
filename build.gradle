@@ -11,4 +11,8 @@ subprojects {
         compile.exclude module: "spring-boot-starter-tomcat"
         compile.exclude group: "org.apache.tomcat"
     }
+    
+    ext {
+        springBootVersion = "2.1.2.RELEASE"
+    }
 }

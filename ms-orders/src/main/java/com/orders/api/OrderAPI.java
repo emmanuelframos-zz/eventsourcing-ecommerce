@@ -1,8 +1,8 @@
 package com.orders.api;
 
-import com.orders.api.dto.OrderDTO;
-import com.orders.api.dto.OrderFilterDTO;
-import com.orders.api.dto.OrderItemDTO;
+import com.orders.contract.dto.OrderDTO;
+import com.orders.contract.dto.OrderFilterDTO;
+import com.orders.contract.dto.OrderItemDTO;
 import com.orders.service.OrderService;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
@@ -31,8 +31,8 @@ public class OrderAPI {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody OrderDTO orderDTO){
-        return orderService.create(orderDTO);
+    public void create(@RequestBody OrderDTO orderDTO){
+        orderService.create(orderDTO);
     }
 
     @PutMapping("/{id}/refund")

@@ -1,7 +1,7 @@
-package com.orders.parser;
+package com.orders.contract.parser;
 
-import com.orders.api.dto.OrderItemDTO;
-import com.orders.domain.OrderItem;
+import com.orders.contract.dto.OrderItemDTO;
+import com.orders.contract.domain.OrderItem;
 import org.springframework.stereotype.Component;
 
 @Component

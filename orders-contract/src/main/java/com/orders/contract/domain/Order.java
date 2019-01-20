@@ -1,4 +1,4 @@
-package com.orders.domain;
+package com.orders.contract.domain;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

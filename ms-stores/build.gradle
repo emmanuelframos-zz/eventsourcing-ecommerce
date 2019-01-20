@@ -9,7 +9,6 @@ dependencies {
     compile project(":commons-exceptions")
 
     /** Spring Boot Stack **/
-    def springBootVersion = "2.1.2.RELEASE"
     compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     compile "org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"
     compile "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}"
