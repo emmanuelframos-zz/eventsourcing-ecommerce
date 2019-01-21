@@ -48,7 +48,7 @@ services:
 #    networks:
 #      - ecommerce_cluster
 #
-#  ms-orders:
+#  ms-ordersconsumer:
 #    build:
 #      context: .
 #      dockerfile: Dockerfile.Orders
@@ -59,7 +59,7 @@ services:
 #    networks:
 #      - ecommerce_cluster
 #
-#  ms-orders-consumer:
+#  ms-ordersconsumer-consumer:
 #    build:
 #      context: .
 #      dockerfile: Dockerfile.OrdersConsumer
@@ -68,7 +68,7 @@ services:
 #    environment:
 #      SPRING_PROFILES_ACTIVE: docker
 #    depends_on:
-#      - ms-orders
+#      - ms-ordersconsumer
 #    networks:
 #      - ecommerce_cluster
 #

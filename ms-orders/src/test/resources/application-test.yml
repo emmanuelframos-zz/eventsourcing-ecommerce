@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ms-orders
+    name: ms-ordersconsumer
 
 server:
   port: 8081
