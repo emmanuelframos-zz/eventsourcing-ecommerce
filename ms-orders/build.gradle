@@ -21,6 +21,7 @@ dependencies {
     compile "io.springfox:springfox-swagger-ui:2.9.2"
 
     compile project (":orders-contract")
+    compile project (":commons-security")
 
     /** Tests **/
     testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"

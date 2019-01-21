@@ -4,10 +4,10 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.ecommerce.commons.contract.dto.AuthResponseDTO;
 import com.ecommerce.exception.AuthenticationException;
 import com.ecommerce.exception.AuthorizationException;
 import com.ecommerce.exception.ExceptionMessages;
-import com.iam.api.dto.AuthResponseDTO;
 import com.iam.api.dto.UserDTO;
 import com.iam.config.SecurityConfig;
 import com.iam.domain.User;
@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 

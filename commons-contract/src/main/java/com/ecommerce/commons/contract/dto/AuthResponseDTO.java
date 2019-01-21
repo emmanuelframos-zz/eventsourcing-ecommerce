@@ -1,4 +1,4 @@
-package com.iam.api.dto;
+package com.ecommerce.commons.contract.dto;
 
 public class AuthResponseDTO {
 

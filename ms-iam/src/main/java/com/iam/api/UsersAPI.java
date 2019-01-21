@@ -1,8 +1,8 @@
 package com.iam.api;
 
+import com.ecommerce.commons.contract.dto.AuthResponseDTO;
 import com.ecommerce.exception.AuthenticationException;
 import com.ecommerce.exception.AuthorizationException;
-import com.iam.api.dto.AuthResponseDTO;
 import com.iam.api.dto.UserDTO;
 import com.iam.parser.UserParser;
 import com.iam.service.UserService;

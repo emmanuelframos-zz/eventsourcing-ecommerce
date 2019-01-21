@@ -22,6 +22,7 @@ dependencies {
     compile "io.springfox:springfox-swagger-ui:2.9.2"
     
     compile project (":commons-exceptions")
+    compile project (":commons-contract")    
 
     /** Tests **/
     testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"

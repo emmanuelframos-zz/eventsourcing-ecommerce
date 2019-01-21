@@ -1,4 +1,7 @@
 include 'commons-exceptions',
+        'commons-security',
+        'commons-rest-client',
+        'commons-contract',
         'ms-orders',
         'ms-orders-consumer', 
         'orders-contract',

@@ -1,20 +1,34 @@
 -- IAM
-Register:     curl -X POST -H "Content-Type: application/json" -d '{"username":"user01", "password":"pwd01"}' http://localhost:8094/api/v1/users/register -v
-Authenticate: curl -X POST -H "Content-Type: application/json" -d '{"username":"user01", "password":"pwd01"}' http://localhost:8094/api/v1/users/authenticate -v
-Authorize:    curl -X POST -H "Content-Type: application/json" -d '{"authToken":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgwMzYxMDAsInVzZXIiOiJ1c2VyMDEifQ.hi7mvsOM1gJmORgyKCXgpptE938XYlbvQvFYEJyRcRQ"}' http://localhost:8094/api/v1/users/authorize -v
+Register:     curl -X POST -H "Content-Type: application/json" -d '{"username":"user01", "password":"pwd01"}' \
+              http://localhost:8094/api/v1/users/register -v
 
+Authenticate: curl -X POST -H "Content-Type: application/json" -d '{"username":"user01", "password":"pwd01"}' \
+              http://localhost:8094/api/v1/users/authenticate -v
+
+Authorize:    curl -X POST -H "Content-Type: application/json" \
+              -d '{"authToken":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgwMzYxMDAsInVzZXIiOiJ1c2VyMDEifQ.hi7mvsOM1gJmORgyKCXgpptE938XYlbvQvFYEJyRcRQ"}' \
+              http://localhost:8094/api/v1/users/authorize -v
 
 -- Stores
-Create:       curl -X POST -H "Content-Type: application/json" -d '{"name":"Loja Um", "address":"Rua Um"}' http://localhost:8090/api/v1/stores -v
+Create:       curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgwNDc0NTIsInVzZXIiOiJ1c2VyMDEifQ.K56_5MejhaoxA0S-TntkQdUctmCxm_ZLE--OagXJB6M" \
+              -H "Content-Type: application/json" -d '{"name":"Loja Um", "address":"Rua Um"}' http://localhost:8090/api/v1/stores -v
+
 Update:       curl -X PUT  -H "Content-Type: application/json" -d '{"name":"Loja Dois", "address":"Rua Dois"}' http://localhost:8090/api/v1/stores/5c4294958b665f15c8bd8797 -v
+
 Find By Id:   curl -H "Content-Type: application/json" http://localhost:8090/api/v1/stores?id=5c4294958b665f15c8bd8797 -v
+
 Find By Name: curl -H "Content-Type: application/json" http://localhost:8090/api/v1/stores?name=Loja%20Dois -v
 
 -- Orders
-Create:         curl -X POST -H "Content-Type: application/json" -d '{"address":"Rua Dois", "status": "CONFIRMED", "confirmationDate": "01-01-2019@10:00:00", "orderItems":[ {"code": "XFG12", "description": "Item Um", "unitPrice": 1.00, "quantity": 1} ]}' http://localhost:8091/api/v1/orders -v
+
+Create:         curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgwNDc0NTIsInVzZXIiOiJ1c2VyMDEifQ.K56_5MejhaoxA0S-TntkQdUctmCxm_ZLE--OagXJB6M" -H "Content-Type: application/json" -d '{"address":"Rua Dois", "status": "CONFIRMED", "confirmationDate": "01-01-2019@10:00:00", "orderItems":[ {"code": "XFG12", "description": "Item Um", "unitPrice": 1.00, "quantity": 1} ]}' http://localhost:8091/api/v1/orders -v
+
 Find By Id:     curl -H "Content-Type: application/json" http://localhost:8091/api/v1/orders?id=5c4298038b665f175548017e -v
+
 Find By Status: curl -H "Content-Type: application/json" http://localhost:8091/api/v1/orders?status=CONFIRMED -v
+
 Refund Order:   curl -X PUT -H "Content-Type: application/json" http://localhost:8091/api/v1/orders/5c4298038b665f175548017e/refund -v
+
 Refund Item:    curl -X PUT -H "Content-Type: application/json" -d '[ {"code": "XFG12"} ]' http://localhost:8091/api/v1/orders/5c42a2878b665f1c724deecd/refundItems -v
 
 -- Payment

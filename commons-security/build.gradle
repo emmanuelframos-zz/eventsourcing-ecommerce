@@ -1,0 +1,14 @@
+archivesBaseName = "commons-security"
+
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+    compile "javax.servlet:javax.servlet-api:4.0.1"
+    compile "org.yaml:snakeyaml:1.23"
+
+    compile project(":commons-rest-client")
+    compile project(":commons-contract")
+    compile project(":commons-exceptions")
+
+}
