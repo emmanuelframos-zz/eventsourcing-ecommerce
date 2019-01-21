@@ -1,3 +1,9 @@
+-- IAM
+Register:     curl -X POST -H "Content-Type: application/json" -d '{"username":"user01", "password":"pwd01"}' http://localhost:8094/api/v1/users/register -v
+Authenticate: curl -X POST -H "Content-Type: application/json" -d '{"username":"user01", "password":"pwd01"}' http://localhost:8094/api/v1/users/authenticate -v
+Authorize:    curl -X POST -H "Content-Type: application/json" -d '{"authToken":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgwMzYxMDAsInVzZXIiOiJ1c2VyMDEifQ.hi7mvsOM1gJmORgyKCXgpptE938XYlbvQvFYEJyRcRQ"}' http://localhost:8094/api/v1/users/authorize -v
+
+
 -- Stores
 Create:       curl -X POST -H "Content-Type: application/json" -d '{"name":"Loja Um", "address":"Rua Um"}' http://localhost:8090/api/v1/stores -v
 Update:       curl -X PUT  -H "Content-Type: application/json" -d '{"name":"Loja Dois", "address":"Rua Dois"}' http://localhost:8090/api/v1/stores/5c4294958b665f15c8bd8797 -v

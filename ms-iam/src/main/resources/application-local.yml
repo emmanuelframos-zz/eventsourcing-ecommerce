@@ -1,0 +1,14 @@
+server:
+  port: 8094
+
+spring:
+  application:
+    name: ms-iam
+  data.mongodb:
+    host: localhost
+    port: 27017
+    username: app
+    password: app2019
+    database: ecommerce
+  security:
+    expirationTime: 3600000 #1h

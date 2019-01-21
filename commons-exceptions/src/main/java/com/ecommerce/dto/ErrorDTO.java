@@ -1,4 +1,4 @@
-package com.stores.api.dto;
+package com.ecommerce.dto;
 
 import java.io.Serializable;
 

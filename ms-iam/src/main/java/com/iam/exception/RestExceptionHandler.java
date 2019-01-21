@@ -1,7 +1,8 @@
-package com.stores.exception;
+package com.iam.exception;
 
 import com.ecommerce.dto.ErrorDTO;
-import com.ecommerce.exception.EntityNotFoundException;
+import com.ecommerce.exception.AuthenticationException;
+import com.ecommerce.exception.AuthorizationException;
 import com.ecommerce.exception.ExceptionMessages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +17,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     private Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
 
-    @ExceptionHandler({EntityNotFoundException.class})
-    public ResponseEntity<ErrorDTO> handleEntityNotFoundException(EntityNotFoundException ex) {
-        logger.error("EntityNotFoundException", ex);
-        return new ResponseEntity<>(ErrorDTO.build().message(ex.getMessage()),
-                HttpStatus.NOT_FOUND);
+    @ExceptionHandler({AuthenticationException.class})
+    public ResponseEntity handleAuthenticationException(AuthenticationException ex) {
+        logger.error("AuthenticationException", ex);
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler({AuthorizationException.class})
+    public ResponseEntity handleAuthorizationException(AuthorizationException ex) {
+        logger.error("AuthorizationException", ex);
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler({Exception.class})

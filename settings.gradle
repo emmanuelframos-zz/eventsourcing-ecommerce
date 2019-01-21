@@ -3,4 +3,5 @@ include 'commons-exceptions',
         'ms-orders-consumer', 
         'orders-contract',
         'ms-payments',
-        'ms-stores'
+        'ms-stores',
+        'ms-iam'
