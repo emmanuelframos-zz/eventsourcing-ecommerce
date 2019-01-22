@@ -4,6 +4,7 @@
 1. Access application root directory
 2. Execute run-all.sh file
 
+## Running mode
 
 ## Usage
 

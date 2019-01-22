@@ -1,0 +1,27 @@
+server:
+  port: 8091
+  http2.enabled: true
+  compression.enabled: true
+  compression.mime-types: application/json
+  compression.min-response-size: 1024
+
+spring:
+  application:
+    name: ms-ordersconsumer
+  data.mongodb:
+    host: ecommerce_mongo
+    port: 27017
+    username: app
+    password: app2019
+    database: ecommerce
+  rabbitmq:
+    host: ecommerce_rabbitmq
+    port: 5672
+    username: admin
+    password: nimda
+
+rabbitmq:
+  order:
+    queue.name: OrderQueue
+    exchange.name: OrderExchange
+    routingKey.name: OrderRoutingKey

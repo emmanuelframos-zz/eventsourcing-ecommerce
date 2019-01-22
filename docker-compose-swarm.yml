@@ -13,7 +13,6 @@ services:
       - 27017:27017
     deploy:
       replicas: 1
-      #endpoint_mode: dnsrr
       resources:
         limits:
           cpus: "1"
@@ -30,7 +29,6 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: root2019
     deploy:
       replicas: 1
-      #endpoint_mode: dnsrr
       resources:
         limits:
           cpus: "1"
@@ -48,7 +46,6 @@ services:
       - 5672:5672
     deploy:
       replicas: 1
-      #endpoint_mode: dnsrr
       resources:
         limits:
           cpus: "1"
@@ -59,12 +56,11 @@ services:
   ms-iam:
     image: ms-iam:latest
     ports:
-      - 8094:8094
+      - "8094:8094"
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: swarm
     deploy:
       replicas: 1
-      #endpoint_mode: dnsrr
       resources:
         limits:
           cpus: "1"
@@ -75,84 +71,80 @@ services:
     networks:
       - ecommerce_cluster
 
-  ms-stores:
-    image: ms-stores:latest
-    ports:
-      - 8090:8090
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    deploy:
-      replicas: 1
-      #endpoint_mode: dnsrr
-      resources:
-        limits:
-          cpus: "1"
-          memory: 512M
-      update_config:
-        parallelism: 1
-        delay: 10s
-    networks:
-      - ecommerce_cluster
-
-  ms-orders:
-    image: ms-orders:latest
-    ports:
-      - 8091:8091
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    deploy:
-      replicas: 1
-      #endpoint_mode: dnsrr
-      resources:
-        limits:
-          cpus: "1"
-          memory: 512M
-      update_config:
-        parallelism: 1
-        delay: 10s
-    networks:
-      - ecommerce_cluster
-
-  ms-orders-consumer:
-    image: ms-orders-consumer:latest
-    ports:
-      - 8092:8092
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    depends_on:
-      - ms-orders
-    deploy:
-      replicas: 1
-      #endpoint_mode: dnsrr
-      resources:
-        limits:
-          cpus: "1"
-          memory: 512M
-      update_config:
-        parallelism: 1
-        delay: 10s
-    networks:
-      - ecommerce_cluster
-
-  ms-payments:
-    image: ms-payments:latest
-    ports:
-      - 8093:8093
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    deploy:
-      replicas: 1
-      #endpoint_mode: dnsrr
-      resources:
-        limits:
-          cpus: "1"
-          memory: 512M
-      update_config:
-        parallelism: 1
-        delay: 10s
-    networks:
-      - ecommerce_cluster
+#  ms-stores:
+#    image: ms-stores:latest
+#    ports:
+#      - 8090:8090
+#    environment:
+#      SPRING_PROFILES_ACTIVE: swarm
+#    deploy:
+#      replicas: 1
+#      resources:
+#        limits:
+#          cpus: "1"
+#          memory: 512M
+#      update_config:
+#        parallelism: 1
+#        delay: 10s
+#    networks:
+#      - ecommerce_cluster
+#
+#  ms-orders:
+#    image: ms-orders:latest
+#    ports:
+#      - 8091:8091
+#    environment:
+#      SPRING_PROFILES_ACTIVE: swarm
+#    deploy:
+#      replicas: 1
+#      resources:
+#        limits:
+#          cpus: "1"
+#          memory: 512M
+#      update_config:
+#        parallelism: 1
+#        delay: 10s
+#    networks:
+#      - ecommerce_cluster
+#
+#  ms-orders-consumer:
+#    image: ms-orders-consumer:latest
+#    ports:
+#      - 8092:8092
+#    environment:
+#      SPRING_PROFILES_ACTIVE: swarm
+#    depends_on:
+#      - ms-orders
+#    deploy:
+#      replicas: 1
+#      resources:
+#        limits:
+#          cpus: "1"
+#          memory: 512M
+#      update_config:
+#        parallelism: 1
+#        delay: 10s
+#    networks:
+#      - ecommerce_cluster
+#
+#  ms-payments:
+#    image: ms-payments:latest
+#    ports:
+#      - 8093:8093
+#    environment:
+#      SPRING_PROFILES_ACTIVE: swarm
+#    deploy:
+#      replicas: 1
+#      resources:
+#        limits:
+#          cpus: "1"
+#          memory: 512M
+#      update_config:
+#        parallelism: 1
+#        delay: 10s
+#    networks:
+#      - ecommerce_cluster
 
 networks:
   ecommerce_cluster:
-    driver: overlay #bridge
+    driver: overlay
