@@ -37,6 +37,17 @@ services:
     networks:
       - ecommerce_cluster
 
+  ms-iam:
+    build:
+      context: .
+      dockerfile: Dockerfile.IAM
+    ports:
+      - 8094:8094
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ecommerce_cluster
+
   ms-stores:
     build:
       context: .

@@ -1,5 +1,6 @@
 package com.ecommerce.stores.api;
 
+import com.ecommerce.commons.contract.dto.IdDTO;
 import com.ecommerce.commons.exceptions.exception.EntityNotFoundException;
 import com.ecommerce.stores.api.dto.StoreDTO;
 import com.ecommerce.stores.api.dto.StoreFilterDTO;
@@ -28,7 +29,7 @@ public class StoreAPI {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody StoreDTO storeDTO){
+    public IdDTO create(@RequestBody StoreDTO storeDTO){
         return storeService.create(storeDTO);
     }
 

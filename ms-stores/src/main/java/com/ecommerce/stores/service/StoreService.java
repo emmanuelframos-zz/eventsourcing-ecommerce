@@ -1,5 +1,6 @@
 package com.ecommerce.stores.service;
 
+import com.ecommerce.commons.contract.dto.IdDTO;
 import com.ecommerce.commons.exceptions.exception.EntityNotFoundException;
 import com.ecommerce.commons.exceptions.exception.ExceptionMessages;
 import com.ecommerce.stores.api.dto.StoreDTO;
@@ -30,9 +31,10 @@ public class StoreService {
         throw new EntityNotFoundException(ExceptionMessages.STORE_NOT_FOUND);
     }
 
-    public String create(StoreDTO storeDTO){
+    public IdDTO create(StoreDTO storeDTO){
         Store store =  storeParser.toDomain(storeDTO);
-        return storeRepository.save(store).getId().toHexString();
+        storeRepository.save(store);
+        return new IdDTO(store.getId().toHexString());
     }
 
     public void update(StoreDTO storeDTO){

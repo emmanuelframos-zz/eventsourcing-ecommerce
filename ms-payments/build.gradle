@@ -9,6 +9,7 @@ dependencies {
     /** Spring Boot Stack **/
     compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     compile "org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}"
 
     /** Utils **/
     compile "org.apache.commons:commons-lang3:3.7"
@@ -16,6 +17,9 @@ dependencies {
     /** Swagger **/
     compile "io.springfox:springfox-swagger2:2.9.2"
     compile "io.springfox:springfox-swagger-ui:2.9.2"
+
+    compile project(":commons-contract")
+    compile project(":commons-security")
 
     /** Tests **/
     testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"

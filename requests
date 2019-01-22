@@ -31,4 +31,13 @@ Refund Order:   curl -X PUT -H "Content-Type: application/json" http://localhost
 
 Refund Item:    curl -X PUT -H "Content-Type: application/json" -d '[ {"code": "XFG12"} ]' http://localhost:8091/api/v1/orders/5c42a2878b665f1c724deecd/refundItems -v
 
--- Payment
+-- Payments
+
+Create:         curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgwNDc0NTIsInVzZXIiOiJ1c2VyMDEifQ.K56_5MejhaoxA0S-TntkQdUctmCxm_ZLE--OagXJB6M" \
+                -H "Content-Type: application/json" \
+                -d '{"status":"PENDING", "creditCardNumber": "5555666633331111", "date": "01-01-2019@10:00:00", "orderId": "1245878"}' \
+                http://localhost:8093/api/v1/payments -v
+
+Find By Filter: curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgwNDc0NTIsInVzZXIiOiJ1c2VyMDEifQ.K56_5MejhaoxA0S-TntkQdUctmCxm_ZLE--OagXJB6M" \
+                -H "Content-Type: application/json" \
+                http://localhost:8093/api/v1/payments?orderId=1245878 -v

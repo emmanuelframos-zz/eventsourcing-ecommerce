@@ -1,0 +1,9 @@
+FROM openjdk:8u191-jre-alpine3.8
+
+ENV HOME=/home/ms-iam
+
+WORKDIR $HOME
+
+ADD ms-iam/build/libs/ms-iam.jar ms-iam.jar
+
+CMD ["java", "-jar", "ms-iam.jar"]
