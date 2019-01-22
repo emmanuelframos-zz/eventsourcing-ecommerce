@@ -11,6 +11,13 @@ services:
       MONGO_INITDB_DATABASE: ecommerce
     ports:
       - 27017:27017
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
     networks:
       - ecommerce_cluster
 
@@ -21,6 +28,13 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root2019
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
     networks:
       - ecommerce_cluster
 
@@ -32,6 +46,13 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
     networks:
       - ecommerce_cluster
 
@@ -41,6 +62,16 @@ services:
       - 8094:8094
     environment:
       SPRING_PROFILES_ACTIVE: docker
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
     networks:
       - ecommerce_cluster
 
@@ -50,6 +81,16 @@ services:
       - 8090:8090
     environment:
       SPRING_PROFILES_ACTIVE: docker
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
     networks:
       - ecommerce_cluster
 
@@ -59,8 +100,16 @@ services:
       - 8091:8091
     environment:
       SPRING_PROFILES_ACTIVE: docker
-    depends_on:
-      - rabbitmq
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
     networks:
       - ecommerce_cluster
 
@@ -72,6 +121,16 @@ services:
       SPRING_PROFILES_ACTIVE: docker
     depends_on:
       - ms-orders
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
     networks:
       - ecommerce_cluster
 
@@ -81,9 +140,19 @@ services:
       - 8093:8093
     environment:
       SPRING_PROFILES_ACTIVE: docker
+    deploy:
+      replicas: 1
+      #endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
     networks:
       - ecommerce_cluster
 
 networks:
   ecommerce_cluster:
-    driver: bridge
+    driver: overlay #bridge

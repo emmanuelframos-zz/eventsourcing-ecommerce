@@ -1,4 +1,4 @@
-archivesBaseName = "ordersconsumer-contract-domain"
+archivesBaseName = "orders-contract"
 
 dependencies {
 

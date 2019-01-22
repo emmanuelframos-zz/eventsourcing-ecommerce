@@ -12,7 +12,7 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/v1/payments",
+@RequestMapping(value = "/api/v1/payments",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class PaymentAPI {

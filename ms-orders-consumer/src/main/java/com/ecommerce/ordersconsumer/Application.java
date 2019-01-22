@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.ecommerce.ordersconsumer.contract.parser"})
+@ComponentScan({"com.ecommerce.orderscontract.parser"})
 @ComponentScan({"com.ecommerce.ordersconsumer.consumer"})
 public class Application {
 
