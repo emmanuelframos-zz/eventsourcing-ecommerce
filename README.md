@@ -140,5 +140,13 @@ curl -H "Authorization: Bearer [auth_token]" \
 - Docker Compose 1.23.0
 - Ubuntu 18.04.1 LTS
 
+## Next steps
+- Mongo Connection Pool
+- Tests: Unit, Integration and E2E
+- Improve exception handling
+- Remove _class column in Mongo collections
+- BFF
+- Bugfixes
+
 ## License
 Apache License, Version 2.0, January 2004.
