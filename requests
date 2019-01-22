@@ -6,56 +6,56 @@ Authenticate: curl -X POST -H "Content-Type: application/json" -d '{"username":"
               http://localhost:8094/api/v1/users/authenticate -v
 
 Authorize:    curl -X POST -H "Content-Type: application/json" \
-              -d '{"authToken":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII"}' \
+              -d '{"authToken":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0"}' \
               http://localhost:8094/api/v1/users/authorize -v
 
 -- Stores
-Create:       curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Create:       curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
               -H "Content-Type: application/json" -d '{"name":"Loja Um", "address":"Rua Um"}' http://localhost:8090/api/v1/stores -v
 
-Update:       curl -X PUT  -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Update:       curl -X PUT  -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
               -H "Content-Type: application/json" -d '{"name":"Loja Dois", "address":"Rua Dois"}' \
               http://localhost:8090/api/v1/stores/5c467d6f24e4990001225326 -v
 
-Find By Id:   curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Find By Id:   curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
               -H "Content-Type: application/json" \
               http://localhost:8090/api/v1/stores?id=5c467d6f24e4990001225326 -v
 
-Find By Name: curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Find By Name: curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
               -H "Content-Type: application/json" \
               http://localhost:8090/api/v1/stores?name=Loja%20Dois -v
 
 -- Orders
 
-Create:         curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Create:         curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
                 -H "Content-Type: application/json" \
                 -d '{"address":"Rua Dois", "status": "CONFIRMED", "confirmationDate": "01-01-2019@10:00:00", "orderItems":[ {"code": "XFG12", "description": "Item Um", "unitPrice": 1.00, "quantity": 1, "status": "CONFIRMED"} ]}' \
                 http://localhost:8091/api/v1/orders -v
 
-Find By Id:     curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Find By Id:     curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
                 -H "Content-Type: application/json" \
                 http://localhost:8091/api/v1/orders?id=5c4685b830fe9d00015dac6a -v
 
-Find By Status: curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Find By Status: curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
                 -H "Content-Type: application/json" \
                 http://localhost:8091/api/v1/orders?status=CONFIRMED -v
 
-Refund Order:   curl -X PUT -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Refund Order:   curl -X PUT -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
                 -H "Content-Type: application/json" \
                 http://localhost:8091/api/v1/orders/5c4685b830fe9d00015dac6a/refund -v
 
-Refund Item:    curl -X PUT -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Refund Item:    curl -X PUT -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
                 -H "Content-Type: application/json" \
                 -d '[ {"code": "XFG12"} ]' \
                 http://localhost:8091/api/v1/orders/5c46867c30fe9d00015dac6b/refundItems -v
 
 -- Payments
 
-Create:         curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Create:         curl -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
                 -H "Content-Type: application/json" \
                 -d '{"status":"PENDING", "creditCardNumber": "5555666633331111", "date": "01-01-2019@10:00:00", "orderId": "1245878"}' \
                 http://localhost:8093/api/v1/payments -v
 
-Find By Filter: curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMjcwMjgsInVzZXIiOiJ1c2VyMDEifQ.4WScNephjFTZCfPgLUBkKJ87zJZGVrbTIjoA-gWvOII" \
+Find By Filter: curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDgxMzE5NzksInVzZXIiOiJ1c2VyMDEifQ.yodwPvO4ky2utRVw73yRTlCRtAt9zUFeSfAP8P1q2Y0" \
                 -H "Content-Type: application/json" \
                 http://localhost:8093/api/v1/payments?orderId=1245878 -v

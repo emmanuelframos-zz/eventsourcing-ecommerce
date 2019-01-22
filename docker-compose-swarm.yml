@@ -9,9 +9,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root2019
       MONGO_INITDB_DATABASE: ecommerce
-    ports:
-      - 27017:27017
     deploy:
+      endpoint_mode: dnsrr
       replicas: 1
       resources:
         limits:
@@ -23,11 +22,15 @@ services:
   mongo-express:
     image: mongo-express:0.49
     ports:
-      - 8081:8081
+      - target: 8081
+        published: 8081
+        protocol: tcp
+        mode: host
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root2019
     deploy:
+      endpoint_mode: dnsrr
       replicas: 1
       resources:
         limits:
@@ -42,9 +45,12 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: nimda
     ports:
-      - 15672:15672
-      - 5672:5672
+      - target: 15672
+        published: 15672
+        protocol: tcp
+        mode: host
     deploy:
+      endpoint_mode: dnsrr
       replicas: 1
       resources:
         limits:
@@ -56,10 +62,14 @@ services:
   ms-iam:
     image: ms-iam:latest
     ports:
-      - "8094:8094"
+      - target: 8094
+        published: 8094
+        protocol: tcp
+        mode: host
     environment:
       SPRING_PROFILES_ACTIVE: swarm
     deploy:
+      endpoint_mode: dnsrr
       replicas: 1
       resources:
         limits:
@@ -71,79 +81,90 @@ services:
     networks:
       - ecommerce_cluster
 
-#  ms-stores:
-#    image: ms-stores:latest
-#    ports:
-#      - 8090:8090
-#    environment:
-#      SPRING_PROFILES_ACTIVE: swarm
-#    deploy:
-#      replicas: 1
-#      resources:
-#        limits:
-#          cpus: "1"
-#          memory: 512M
-#      update_config:
-#        parallelism: 1
-#        delay: 10s
-#    networks:
-#      - ecommerce_cluster
-#
-#  ms-orders:
-#    image: ms-orders:latest
-#    ports:
-#      - 8091:8091
-#    environment:
-#      SPRING_PROFILES_ACTIVE: swarm
-#    deploy:
-#      replicas: 1
-#      resources:
-#        limits:
-#          cpus: "1"
-#          memory: 512M
-#      update_config:
-#        parallelism: 1
-#        delay: 10s
-#    networks:
-#      - ecommerce_cluster
-#
-#  ms-orders-consumer:
-#    image: ms-orders-consumer:latest
-#    ports:
-#      - 8092:8092
-#    environment:
-#      SPRING_PROFILES_ACTIVE: swarm
-#    depends_on:
-#      - ms-orders
-#    deploy:
-#      replicas: 1
-#      resources:
-#        limits:
-#          cpus: "1"
-#          memory: 512M
-#      update_config:
-#        parallelism: 1
-#        delay: 10s
-#    networks:
-#      - ecommerce_cluster
-#
-#  ms-payments:
-#    image: ms-payments:latest
-#    ports:
-#      - 8093:8093
-#    environment:
-#      SPRING_PROFILES_ACTIVE: swarm
-#    deploy:
-#      replicas: 1
-#      resources:
-#        limits:
-#          cpus: "1"
-#          memory: 512M
-#      update_config:
-#        parallelism: 1
-#        delay: 10s
-#    networks:
-#      - ecommerce_cluster
+  ms-stores:
+    image: ms-stores:latest
+    ports:
+      - target: 8090
+        published: 8090
+        protocol: tcp
+        mode: host
+    environment:
+      SPRING_PROFILES_ACTIVE: swarm
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - ecommerce_cluster
+
+  ms-orders:
+    image: ms-orders:latest
+    ports:
+      - target: 8091
+        published: 8091
+        protocol: tcp
+        mode: host
+    environment:
+      SPRING_PROFILES_ACTIVE: swarm
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - ecommerce_cluster
+
+  ms-orders-consumer:
+    image: ms-orders-consumer:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: swarm
+    depends_on:
+      - ms-orders
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - ecommerce_cluster
+
+  ms-payments:
+    image: ms-payments:latest
+    ports:
+      - target: 8093
+        published: 8093
+        protocol: tcp
+        mode: host
+    environment:
+      SPRING_PROFILES_ACTIVE: swarm
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - ecommerce_cluster
 
 networks:
   ecommerce_cluster:

@@ -12,7 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"com.ecommerce.ordersconsumer.consumer"})
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Thread.sleep(20000);
         SpringApplication.run(Application.class, args);
     }
 
